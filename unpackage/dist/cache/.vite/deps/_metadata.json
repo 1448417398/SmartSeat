@@ -1,0 +1,40 @@
+{
+  "hash": "018952a6",
+  "configHash": "ede10c4b",
+  "lockfileHash": "a8a370bb",
+  "browserHash": "8e97a81d",
+  "optimized": {
+    "three": {
+      "src": "../../../../../node_modules/three/build/three.module.js",
+      "file": "three.js",
+      "fileHash": "cb08e151",
+      "needsInterop": false
+    },
+    "three/examples/jsm/loaders/GLTFLoader": {
+      "src": "../../../../../node_modules/three/examples/jsm/loaders/GLTFLoader.js",
+      "file": "three_examples_jsm_loaders_GLTFLoader.js",
+      "fileHash": "4c05fca7",
+      "needsInterop": false
+    },
+    "three/examples/jsm/controls/OrbitControls": {
+      "src": "../../../../../node_modules/three/examples/jsm/controls/OrbitControls.js",
+      "file": "three_examples_jsm_controls_OrbitControls.js",
+      "fileHash": "f679394e",
+      "needsInterop": false
+    },
+    "mqtt": {
+      "src": "../../../../../node_modules/mqtt/dist/mqtt.esm.js",
+      "file": "mqtt.js",
+      "fileHash": "f476acdc",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-7CPSHE2K": {
+      "file": "chunk-7CPSHE2K.js"
+    },
+    "chunk-O5YE6VVP": {
+      "file": "chunk-O5YE6VVP.js"
+    }
+  }
+}

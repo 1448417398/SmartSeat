@@ -1,0 +1,31 @@
+
+.register-container {
+  padding: 20px;
+}
+.register-container uni-text {
+  font-size: 20px;
+  margin-bottom: 20px;
+  display: block;
+}
+.register-container uni-input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  box-sizing: border-box;
+}
+.register-container uni-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #4ab3df;
+  color: white;
+  border: none;
+  text-align: center;
+  margin-top: 10px;
+}
+.login-link {
+  color: #4ab3df;
+  margin-top: 10px;
+  display: block;
+  text-align: right;
+  cursor: pointer;
+}

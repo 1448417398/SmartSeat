@@ -1,0 +1,47 @@
+{
+	"pages": [
+		{
+			"path": "pages/index/index"
+		},
+		{
+			"path": "pages/AdjustSeat/AdjustSeat"
+		},
+		{
+			"path" : "pages/AddDevice/AddDevice",
+			"style" : 
+			{
+				"navigationBarTitleText" : "连接设备",
+				"navigationBarBackgroundColor": "#4ab3df"
+			}
+		},
+		{
+			"path" : "pages/User/User",
+			"style" : 
+			{
+				"navigationBarTitleText" : "账户设置",
+				"navigationBarBackgroundColor": "#4ab3df"
+			}
+		},
+		{
+			"path" : "pages/Register/Register",
+			"style" : 
+			{
+				"navigationBarTitleText" : ""
+			}
+		},
+		{
+			"path" : "pages/DataStatistics/DataStatistics",
+			"style" : 
+			{
+				"navigationBarTitleText" : ""
+			}
+		},
+		{
+			"path" : "pages/VoiceInteraction/VoiceInteraction",
+			"style" : 
+			{
+				"navigationBarTitleText" : ""
+			}
+		}
+	]
+}
