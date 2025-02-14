@@ -9,10 +9,10 @@ import {
   TOUCH,
   Vector2,
   Vector3
-} from "./chunk-7CPSHE2K.js";
+} from "./chunk-YBDFCJLX.js";
 import "./chunk-O5YE6VVP.js";
 
-// ../../../学习/大四上/毕设/smartSeat1.22/node_modules/three/examples/jsm/controls/OrbitControls.js
+// ../../../学习/大四上/毕设/app前端/smartSeat2.13/node_modules/three/examples/jsm/controls/OrbitControls.js
 var _changeEvent = { type: "change" };
 var _startEvent = { type: "start" };
 var _endEvent = { type: "end" };

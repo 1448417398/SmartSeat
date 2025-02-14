@@ -10,38 +10,39 @@
 					<span>各关节调节</span>
 				</view>
 				<view class="section">
-					<view class="uni-title">整体前后调节</view>
-					<slider min="1" max="5" step="1" show-value :value="overallFrontBack" @change="adjustSeat('overallFrontBack', $event)"></slider>
-					<view class="uni-title">整体上下调节</view>
-					<slider min="1" max="5" step="1" show-value :value="overallUpDown" @change="adjustSeat('overallUpDown', $event)"></slider>
-					<view class="uni-title">靠背角度调节</view>
+					<view class="uni-title">座垫高度调节</view>
+					<slider min="1" max="5" step="0.01" show-value :value="seatHeight" @change="adjustSeatHeight($event)"></slider>
+					<view class="uni-title">座垫倾角调节</view>
+					<slider min="1" max="5" step="0.01" show-value :value="seatAngle" @change="adjustSeatAngle($event)"></slider>
+					<view class="uni-title">靠背倾角调节</view>
 					<slider 
 						min="1" 
 						max="5" 
-						step="1" 
+						step="0.01" 
 						show-value 
 						:value="backrestAngle" 
 						@change="adjustBackRestRotation($event)"
 					></slider>
-					<view class="uni-title">靠背上部角度调节</view>
-					<slider min="1" max="5" step="1" show-value :value="upperBackrestAngle" @change="adjustSeat('upperBackrestAngle', $event)"></slider>
-					<view class="uni-title">座椅角度调节</view>
-					<slider min="1" max="5" step="1" show-value :value="seatAngle" @change="adjustSeat('seatAngle', $event)"></slider>
-					<view class="uni-title">座椅前后调节</view>
-					<slider min="1" max="5" step="1" show-value :value="seatFrontBack" @change="adjustSeat('seatFrontBack', $event)"></slider>
-					<view class="uni-title">头枕调节</view>
-					<slider min="1" max="5" step="1" show-value :value="headrestAdjustment" @change="adjustSeat('headrestAdjustment', $event)"></slider>
-					<view class="uni-title">腰部支撑量调节</view>
-					<slider min="1" max="5" step="1" show-value :value="lumbarSupport" @change="adjustSeat('lumbarSupport', $event)"></slider>
-					<view class="uni-title">腰靠上下调节</view>
+					<view class="uni-title">腰托高度调节</view>
 					<slider 
 						min="1" 
 						max="5" 
-						step="1" 
+						step="0.01" 
 						show-value 
-						:value="cushionHeight" 
-						@change="adjustCushionHeight($event)"
+						:value="lumbarHeight" 
+						@change="adjustLumbarHeight($event)"
 					></slider>
+					<view class="uni-title">腰托角度调节</view>
+					<slider min="1" max="5" step="0.01" show-value :value="lumbarAngle" @change="adjustLumbarAngle($event)"></slider>
+					<view class="uni-title">头枕高度调节</view>
+					<slider min="1" max="5" step="0.01" show-value :value="headrestHeight" @change="adjustHeadrestHeight($event)"></slider>
+					<view class="uni-title">头枕角度调节</view>
+					<slider min="1" max="5" step="0.01" show-value :value="headrestAngle" @change="adjustHeadrestAngle($event)"></slider>
+					<view class="uni-title">靠背上部角度调节</view>
+					<slider min="1" max="5" step="1" show-value :value="upperBackrestAngle" @change="adjustSeat('upperBackrestAngle', $event)"></slider>
+					<view class="uni-title">座椅前后调节</view>
+					<slider min="1" max="5" step="1" show-value :value="seatFrontBack" @change="adjustSeat('seatFrontBack', $event)"></slider>
+
 				</view>
 			</view>
 
@@ -96,37 +97,58 @@
 		  },
 		data() {
 			return {
-				cushionHeight: uni.getStorageSync('cushionHeight') || 1,
-				overallFrontBack: uni.getStorageSync('overallFrontBack') || 1,
-				overallUpDown: uni.getStorageSync('overallUpDown') || 1,
-				backrestAngle: uni.getStorageSync('backrestAngle') || 1,
-				upperBackrestAngle: uni.getStorageSync('upperBackrestAngle') || 1,
+				seatHeight: uni.getStorageSync('seatHeight') || 1,
 				seatAngle: uni.getStorageSync('seatAngle') || 1,
+				backrestAngle: uni.getStorageSync('backrestAngle') || 1,
+				lumbarHeight: uni.getStorageSync('lumbarHeight') || 1,
+				lumbarAngle: uni.getStorageSync('lumbarAngle') || 1,
+				headrestHeight: uni.getStorageSync('headrestHeight') || 1,
+				headrestAngle: uni.getStorageSync('headrestAngle') || 1,
+				upperBackrestAngle: uni.getStorageSync('upperBackrestAngle') || 1,
 				seatFrontBack: uni.getStorageSync('seatFrontBack') || 1,
-				headrestAdjustment: uni.getStorageSync('headrestAdjustment') || 1,
-				lumbarSupport: uni.getStorageSync('lumbarSupport') || 1,
 				preferenceName: '',
-				preferences: []
+				preferences: [],
 			}
 		},
 		created() {
 			this.loadPreferences();
 		},
 		methods: {
-			adjustCushionHeight(event) {
-				const value = event.detail.value; // 获取滑块值
-				this.cushionHeight = value; // 更新数据属性
-				uni.setStorageSync('cushionHeight', value); // 存储到本地
-				this.$refs.modelViewer.adjustCushionHeight(value); // 更新模型视图
-				console.log(`调整腰靠高度为 ${value}`);
+			handleAdjustment(propName, storageKey, modelViewerMethod, event) {
+			    const value = event.detail.value;
+			    // 更新本地 data（propName 与 storageKey 可相同或不同）
+			    this[propName] = value;
+			    uni.setStorageSync(storageKey, value);
+			    // 如果有对应的 ModelViewer 方法，则调用
+			    if (modelViewerMethod && this.$refs.modelViewer && typeof this.$refs.modelViewer[modelViewerMethod] === 'function') {
+			      this.$refs.modelViewer[modelViewerMethod](value);
+			    }
+			    console.log(`调整 ${propName} 为 ${value}`);
+			},
+			// 之后各个调整方法就可以调用这个通用方法：
+			adjustLumbarHeight(event) {
+			    this.handleAdjustment('lumbarHeight', 'lumbarHeight', 'adjustLumbarHeight', event);
 			},
 			adjustBackRestRotation(event) {
-			    const value = event.detail.value;
-			    this.backrestAngle = value; // 更新数据属性
-			    // 调用 ModelViewer 中的旋转函数
-			    this.$refs.modelViewer.adjustBackRestRotation(value);
+			    this.handleAdjustment('backrestAngle', 'backrestAngle', 'adjustBackRestRotation', event);
 			},
-			adjustSeat(part, event) {
+			adjustSeatHeight(event) {
+			    // 注意：data 属性命名为 seatHeight，但存储键名为 sitHeight，这里建议统一为同一个名称
+			    this.handleAdjustment('seatHeight', 'seatHeight', 'adjustSeatHeight', event);
+			},
+			adjustHeadrestHeight(event) {
+			    this.handleAdjustment('headrestHeight', 'headrestHeight', 'adjustHeadrestHeight', event);
+			},
+			adjustHeadrestAngle(event) {
+			    this.handleAdjustment('headrestAngle', 'headrestAngle', 'adjustHeadrestAngle', event);
+			},
+			adjustLumbarAngle(event) {
+			    this.handleAdjustment('lumbarAngle', 'lumbarAngle', 'adjustLumbarAngle', event);
+			},
+			adjustSeatAngle(event) {
+				this.handleAdjustment('seatAngle', 'seatAngle', 'adjustSeatAngle', event);
+			},
+ 			adjustSeat(part, event) {
 				const value = event.detail.value;
 				this[part] = value;
 				uni.setStorageSync(part, value);

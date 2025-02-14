@@ -65,10 +65,10 @@ import {
   Vector2,
   Vector3,
   VectorKeyframeTrack
-} from "./chunk-7CPSHE2K.js";
+} from "./chunk-YBDFCJLX.js";
 import "./chunk-O5YE6VVP.js";
 
-// ../../../学习/大四上/毕设/smartSeat1.22/node_modules/three/examples/jsm/utils/BufferGeometryUtils.js
+// ../../../学习/大四上/毕设/app前端/smartSeat2.13/node_modules/three/examples/jsm/utils/BufferGeometryUtils.js
 function toTrianglesDrawMode(geometry, drawMode) {
   if (drawMode === TrianglesDrawMode) {
     console.warn("THREE.BufferGeometryUtils.toTrianglesDrawMode(): Geometry already defined as triangles.");
@@ -124,7 +124,7 @@ function toTrianglesDrawMode(geometry, drawMode) {
   }
 }
 
-// ../../../学习/大四上/毕设/smartSeat1.22/node_modules/three/examples/jsm/loaders/GLTFLoader.js
+// ../../../学习/大四上/毕设/app前端/smartSeat2.13/node_modules/three/examples/jsm/loaders/GLTFLoader.js
 var GLTFLoader = class extends Loader {
   constructor(manager) {
     super(manager);

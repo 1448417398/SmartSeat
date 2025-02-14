@@ -7,7 +7,7 @@ import {
   __publicField
 } from "./chunk-O5YE6VVP.js";
 
-// ../../../学习/大四上/毕设/smartSeat1.22/node_modules/mqtt/dist/mqtt.esm.js
+// ../../../学习/大四上/毕设/app前端/smartSeat2.13/node_modules/mqtt/dist/mqtt.esm.js
 var gs = Object.defineProperty;
 var zg = Object.getOwnPropertyDescriptor;
 var Kg = Object.getOwnPropertyNames;
